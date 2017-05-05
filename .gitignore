@@ -1,16 +1,35 @@
-# Result of ./configure
-.deps
+aclocal.m4
+app.info
+/autom4te.cache/
+compile
 config.h
+config.h.in
 config.log
 config.status
-m6809-run
-stamp-h1
+configure
+configure.scan
+coverage-report
+depcomp
+install-sh
+libtool
+m4
 Makefile
-aclocal.m4
-autom4te.cache
+Makefile.in
+missing
+stamp-h1
 
-# Result of make
-*.o
+.deps
 
-# Result of emacs edits
 *~
+*.a
+*.gcno
+*.gcda
+*.la
+*.lo
+*.log
+*.o
+*.so*
+*.tar*
+*.zip
+
+m6809-run

@@ -1,16 +1,16 @@
-AC_PREREQ(2.61)
-AC_INIT(m6809-run, 0.92, brian@oddchange.com)
-AC_CONFIG_SRCDIR([6809.c])
-AM_INIT_AUTOMAKE([foreign])
-AC_CONFIG_HEADER([config.h])
+# Process this file with autoconf to produce a configure script.
 
-# Checks for programs.
-AC_PROG_CC
+AC_PREREQ([2.61])
+AC_INIT(m6809-run, 0.92, brian@oddchange.com)
+AC_CONFIG_HEADERS([config.h])
 AC_PROG_CC_C99
 
-# Checks for header files.
+AM_INIT_AUTOMAKE([foreign])
+
+# Check for header files
 AC_HEADER_STDC
-AC_CHECK_HEADERS([netinet/in.h stdint.h stdlib.h string.h sys/socket.h sys/time.h termios.h unistd.h])
+AC_CHECK_HEADERS([netinet/in.h stdint.h stdlib.h string.h sys/socket.h \
+		  sys/time.h termios.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_BIGENDIAN
@@ -52,5 +52,11 @@ if test $rl_lib = yes; then
 	AC_SUBST(READLINE_LIBS)
 fi
 
-AC_CONFIG_FILES([Makefile])
+
+AC_CONFIG_FILES([
+ Makefile
+ src/Makefile
+ scripts/Makefile
+])
+
 AC_OUTPUT

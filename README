@@ -8,6 +8,10 @@ Build and install (on Linux)
 you will need make, gcc, aclocal, automake and probably some other
 stuff. Then:
 
+> aclocal
+> autoconf
+> automake --force-missing
+> ./configure --enable-readline --enable-6309 --prefix=/opt/gcc6809
 > ./configure
 > make
 
