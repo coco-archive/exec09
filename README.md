@@ -560,8 +560,10 @@ However, the error-checking is not rigorous. In particular:
 Authors
 -------
 
+```
 Arto Salmi              asalmi@ratol.fi
 Joze Fabcic
 Brian Dominy            brian@oddchange.com
 Neal Crook              neal@pippaluk.org.uk
 Nils Eilers             nils.eilers@gmx.de
+```
