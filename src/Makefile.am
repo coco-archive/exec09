@@ -18,4 +18,6 @@ m6809_run_SOURCES = 6809.c \
 
 LIBS = $(READLINE_LIBS)
 
+AM_CFLAGS=-Wall -Wextra
+
 bin_PROGRAMS = m6809-run
