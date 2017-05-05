@@ -178,7 +178,7 @@ struct option
 } option_table[] = {
 	{ 'd', "debug", "Enter the monitor immediately",
 		HAS_NEG, NO_ARG, &debug_enabled, 1, NULL, NULL },
-	{ 'h', "help", NULL,
+	{ 'h', "help", "Show this help text",
 		NO_NEG, NO_ARG, NULL, 0, 0, do_help },
 	{ 'b', "binary", "",
 		NO_NEG, NO_ARG, &binary, 1, NULL, NULL },

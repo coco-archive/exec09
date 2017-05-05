@@ -100,7 +100,29 @@ for text and data.  The simple machine enforces this and will
 Command-line options
 --------------------
 
-Use -help to see the command-line options.
+Use --help to see the command-line options:
+
+```
+Motorola 6809 Simulator     Version 0.92
+m6809-run [options] [program]
+
+Options:
+   -d, --debug           Enter the monitor immediately
+   -h, --help            Show this help text
+   -b, --binary
+   -M, --mhz
+   --68a09               Emulate the 68A09 variation (1.5Mhz)
+   --68b09               Emulate the 68B09 variation (2Mhz)
+   -R, --realtime        Limit simulation speed to match realtime
+   -I, --tIckfreq        Automatically calls the machine's tick every so many cycles
+   -C, --cycledump
+   -o, --os9call         Treat SWI2 as an OS9/NitrOS9 system call and report postbyte
+   -t, --loadmap
+   -T, --trace
+   -m, --maxcycles       Set maximum number of cycles to run (0 to disable)
+   -s, --machine         Specify the machine (exact hardware) to emulate
+   -p, --persistent      Use persistent machine state
+```
 
 
 Debugging
