@@ -1,3 +1,5 @@
+// See eon.h for a description of this machine
+
 #include "config.h"
 #ifdef HAVE_STDINT_H
 # include <stdint.h>

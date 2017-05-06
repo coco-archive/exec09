@@ -1,3 +1,11 @@
+/********************************************************************
+ * The Scroungemaster II machine, a platform
+ * for 6809 CamelForth. See
+ * Brad Rodriguez http://www.camelforth.com/page.php?6
+ * and
+ * http://www.bradrodriguez.com/papers/impov3.htm
+ ********************************************************************/
+
 #include "config.h"
 #ifdef HAVE_STDINT_H
 # include <stdint.h>
@@ -14,14 +22,6 @@ FILE *batch_file;
 int smii_i_avail = 1;
 int smii_o_busy = 0;
 
-
-/********************************************************************
- * The Scroungemaster II machine, a platform
- * for 6809 CamelForth. See
- * Brad Rodriguez http://www.camelforth.com/page.php?6
- * and
- * http://www.bradrodriguez.com/papers/impov3.htm
- ********************************************************************/
 
 // by inspection command read (should be address 0x7c02) comes in with addr=0x8d
 // TODO no way to check for "char available" and so smii_i_busy is always true and

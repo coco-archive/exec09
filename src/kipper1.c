@@ -1,3 +1,12 @@
+/********************************************************************
+ * The kipper1 SBC by Kip Koon
+ *
+ * 32KByte of RAM at $0000
+ * 6850 ACIA at      $A000,$A001
+ * 16KByte of ROM at $C000
+ *
+ ********************************************************************/
+
 #include "config.h"
 #ifdef HAVE_STDINT_H
 # include <stdint.h>
@@ -9,14 +18,6 @@
 #include "6809.h"
 
 FILE *batch_file;
-
-/********************************************************************
- * The kipper1 SBC
- *
- * 32KByte of RAM at $0000
- * 6850 ACIA at      $A000,$A001
- * 16KByte of ROM at $C000
- ********************************************************************/
 
 /* UART-style console. Console input is blocking (but should not be)
  */
