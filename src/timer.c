@@ -79,7 +79,7 @@ void hwtimer_update (struct hw_device *dev)
 }
 
 
-U8 hwtimer_read (struct hw_device *dev, unsigned long addr)
+uint8_t hwtimer_read (struct hw_device *dev, unsigned long addr)
 {
 	struct hwtimer *timer = (struct hwtimer *)dev->priv;
 	switch (addr)
@@ -96,7 +96,7 @@ U8 hwtimer_read (struct hw_device *dev, unsigned long addr)
 	}
 }
 
-void hwtimer_write (struct hw_device *dev, unsigned long addr, U8 val)
+void hwtimer_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	struct hwtimer *timer = (struct hwtimer *)dev->priv;
 	switch (addr)

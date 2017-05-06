@@ -46,8 +46,8 @@ struct hwtimer
  */
 void hwtimer_decrement (struct hwtimer *timer, unsigned int cycles);
 void hwtimer_update (struct hw_device *dev);
-U8 hwtimer_read (struct hw_device *dev, unsigned long addr);
-void hwtimer_write (struct hw_device *dev, unsigned long addr, U8 val);
+uint8_t hwtimer_read (struct hw_device *dev, unsigned long addr);
+void hwtimer_write (struct hw_device *dev, unsigned long addr, uint8_t val);
 void hwtimer_reset (struct hw_device *dev);
 void oscillator_reset (struct hw_device *dev);
 struct hw_device *hwtimer_create (struct hw_device *int_dev, unsigned int int_line);

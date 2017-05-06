@@ -38,8 +38,8 @@ struct imux
  */
 void imux_refresh (struct imux *mux);
 void imux_reset (struct hw_device *dev);
-U8 imux_read (struct hw_device *dev, unsigned long addr);
-void imux_write (struct hw_device *dev, unsigned long addr, U8 val);
+uint8_t imux_read (struct hw_device *dev, unsigned long addr);
+void imux_write (struct hw_device *dev, unsigned long addr, uint8_t val);
 
 /*
  * Register an interrupt line with the multiplexer.

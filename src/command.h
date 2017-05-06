@@ -10,7 +10,7 @@ void keybuffering_defaults (void);
 void print_current_insn (void);
 int command_loop (void);
 void command_read_hook (absolute_address_t addr);
-void command_write_hook (absolute_address_t addr, U8 val);
+void command_write_hook (absolute_address_t addr, uint8_t val);
 int kbhit(void);
 int kbchar(void);
 

@@ -67,12 +67,12 @@ void disk_update (struct hw_device *dev)
 	Induce some latency into the process. */
 }
 
-U8 disk_read (struct hw_device *dev, unsigned long addr)
+uint8_t disk_read (struct hw_device *dev, unsigned long addr)
 {
 	return 0;
 }
 
-void disk_write (struct hw_device *dev, unsigned long addr, U8 val)
+void disk_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	struct disk_priv *disk = (struct disk_priv *)dev->priv;
 	int retvar;

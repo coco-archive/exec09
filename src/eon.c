@@ -1,3 +1,9 @@
+#include "config.h"
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#else
+#error
+#endif
 #include <fcntl.h>
 #include "machine.h"
 #include "eon.h"
@@ -6,6 +12,7 @@
 #include "serial.h"
 #include "imux.h"
 #include "timer.h"
+
 
 
 /**
@@ -30,7 +37,7 @@ void eon_init (const char *boot_rom_file)
 
 	device_define ( dev = console_create (), 0,
 		CONSOLE_ADDR, BUS_MAP_SIZE, MAP_READWRITE );
-	device_define (dev, 0, 
+	device_define (dev, 0,
 		0xFF00, BUS_MAP_SIZE, MAP_READWRITE );
 
 	device_define ( disk_create ("disk.bin", ram_dev), 0,

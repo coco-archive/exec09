@@ -21,8 +21,8 @@ struct small_mmu;
 void small_mmu_update_slot (struct small_mmu *mmu, unsigned int slot);
 void small_mmu_update_current (struct small_mmu *mmu);
 void small_mmu_update_all (struct small_mmu *mmu);
-U8 small_mmu_read (struct hw_device *dev, unsigned long addr);
-void small_mmu_write (struct hw_device *dev, unsigned long addr, U8 val);
+uint8_t small_mmu_read (struct hw_device *dev, unsigned long addr);
+void small_mmu_write (struct hw_device *dev, unsigned long addr, uint8_t val);
 void small_mmu_reset (struct hw_device *dev);
 struct hw_device* small_mmu_create (struct hw_device *realdev);
 

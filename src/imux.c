@@ -56,7 +56,7 @@ void imux_reset (struct hw_device *dev)
 	mux->pending = 0;
 }
 
-U8 imux_read (struct hw_device *dev, unsigned long addr)
+uint8_t imux_read (struct hw_device *dev, unsigned long addr)
 {
 	struct imux *mux = (struct imux *)dev->priv;
 	switch (addr)
@@ -72,7 +72,7 @@ U8 imux_read (struct hw_device *dev, unsigned long addr)
 	return -1;
 }
 
-void imux_write (struct hw_device *dev, unsigned long addr, U8 val)
+void imux_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	struct imux *mux = (struct imux *)dev->priv;
 	switch (addr)

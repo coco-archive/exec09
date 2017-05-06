@@ -135,23 +135,23 @@ struct wpc_asic
 	struct hw_device *ram_dev;
 	struct hw_device *dmd_dev;
 
-	U8 led;
-	U8 rombank;
-	U8 ram_unlocked;
-	U8 ram_lock_size;
-	U16 shiftaddr;
-	U16 shiftbit;
-   U8 lamp_strobe;
-   U8 lamp_mx[8];
-   U8 sols[48];
-   U8 switch_strobe;
-   U8 switch_mx[10];
-	U8 opto_mx[10];
-	U8 dmd_maps[2];
+	uint8_t led;
+	uint8_t rombank;
+	uint8_t ram_unlocked;
+	uint8_t ram_lock_size;
+	uint16_t shiftaddr;
+	uint16_t shiftbit;
+   uint8_t lamp_strobe;
+   uint8_t lamp_mx[8];
+   uint8_t sols[48];
+   uint8_t switch_strobe;
+   uint8_t switch_mx[10];
+	uint8_t opto_mx[10];
+	uint8_t dmd_maps[2];
 
 	unsigned int dmd_phase;
-	U8 dmd_visibles[3];
-	U8 dmd_last_visibles[3];
+	uint8_t dmd_visibles[3];
+	uint8_t dmd_last_visibles[3];
 
 	int curr_sw;
 	int curr_sw_time;
@@ -166,11 +166,11 @@ int wpc_sock;
 
 static int wpc_console_inited = 0;
 
-static U8 wpc_get_console_state (void)
+static uint8_t wpc_get_console_state (void)
 {
 	fd_set fds;
 	struct timeval timeout;
-	U8 rc = WPC_DEBUG_WRITE_READY;
+	uint8_t rc = WPC_DEBUG_WRITE_READY;
 
 	if (!wpc_console_inited)
 		rc |= WPC_DEBUG_READ_READY;
@@ -191,9 +191,9 @@ static U8 wpc_get_console_state (void)
 }
 
 
-static U8 wpc_console_read (void)
+static uint8_t wpc_console_read (void)
 {
-	U8 c = 0;
+	uint8_t c = 0;
 
 	if (!wpc_console_inited)
 	{
@@ -206,14 +206,14 @@ static U8 wpc_console_read (void)
 }
 
 
-static void wpc_console_write (U8 val)
+static void wpc_console_write (uint8_t val)
 {
 	putchar (val);
 	fflush (stdout);
 }
 
 
-static int scanbit (U8 val)
+static int scanbit (uint8_t val)
 {
    if (val & 0x80) return 7;
    else if (val & 0x40) return 6;
@@ -275,7 +275,7 @@ void wpc_write_lamp (int num, int flag)
 }
 
 
-void wpc_write_sols (int first, U8 val)
+void wpc_write_sols (int first, uint8_t val)
 {
 	int i;
 	for (i=0; i < 8; i++)
@@ -285,7 +285,7 @@ void wpc_write_sols (int first, U8 val)
 }
 
 
-void wpc_dmd_set_visible (U8 val)
+void wpc_dmd_set_visible (uint8_t val)
 {
 	char *p;
 	struct wpc_message msg;
@@ -397,9 +397,9 @@ void wpc_keypoll (void)
 
 
 
-U8 wpc_asic_read (struct hw_device *dev, unsigned long addr)
+uint8_t wpc_asic_read (struct hw_device *dev, unsigned long addr)
 {
-	U8 val;
+	uint8_t val;
 
 	switch (addr + WPC_ASIC_BASE)
 	{
@@ -512,7 +512,7 @@ void wpc_set_dmd_page (unsigned int map, unsigned char val)
 }
 
 
-void wpc_asic_write (struct hw_device *dev, unsigned long addr, U8 val)
+void wpc_asic_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	switch (addr + WPC_ASIC_BASE)
 	{

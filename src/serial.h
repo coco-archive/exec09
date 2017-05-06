@@ -41,10 +41,10 @@ struct serial_port
 	#define SER_STAT_WRITEOK 0x2
 
 void serial_update (struct serial_port *port);
-U8 serial_read (struct hw_device *dev, unsigned long addr);
-void serial_write (struct hw_device *dev, unsigned long addr, U8 val);
+uint8_t serial_read (struct hw_device *dev, unsigned long addr);
+void serial_write (struct hw_device *dev, unsigned long addr, uint8_t val);
 void serial_reset (struct hw_device *dev);
-extern U8 null_read (struct hw_device *dev, unsigned long addr);
+extern uint8_t null_read (struct hw_device *dev, unsigned long addr);
 struct hw_device* serial_create (void);
 struct hw_device* hostfile_create (const char *filename, int flags);
 

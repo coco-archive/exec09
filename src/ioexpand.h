@@ -43,8 +43,8 @@ struct ioexpand
 struct hw_device *ioexpand_create (void);
 void ioexpand_attach (struct hw_device *expander_dev, int slot, unsigned long offset, struct hw_device *io_dev);
 void ioexpand_reset (struct hw_device *dev);
-U8 ioexpand_read (struct hw_device *dev, unsigned long addr);
-void ioexpand_write (struct hw_device *dev, unsigned long addr, U8 val);
+uint8_t ioexpand_read (struct hw_device *dev, unsigned long addr);
+void ioexpand_write (struct hw_device *dev, unsigned long addr, uint8_t val);
 struct hw_device *ioexpand_create (void);
 
 #endif

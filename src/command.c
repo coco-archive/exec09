@@ -196,7 +196,7 @@ void eval_assign (char *expr, unsigned long val, char *eflag)
       absolute_address_t dst = eval_mem(expr, LVALUE, eflag);
 
       if (!*eflag)
-         abs_write8(dst, (U8) val);
+         abs_write8(dst, val);
    }
 }
 
@@ -696,8 +696,8 @@ void do_set (char *expr)
 
 void print_thread_data (absolute_address_t th)
 {
-   U8 b;
-   U16 w;
+   uint8_t b;
+   uint16_t w;
    absolute_address_t pc;
 
    w = abs_read16 (th + THREAD_DATA_PC);
@@ -1584,7 +1584,7 @@ void command_read_hook (absolute_address_t addr)
    }
 }
 
-void command_write_hook (absolute_address_t addr, U8 val)
+void command_write_hook (absolute_address_t addr, uint8_t val)
 {
    breakpoint_t *br;
 

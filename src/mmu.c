@@ -8,8 +8,8 @@ struct small_mmu
 {
 	struct hw_device *realdev;
 	unsigned int page_size;
-	U8 global_regs[8];
-	U8 slot_regs[SMR_SLOTS][2];
+	uint8_t global_regs[8];
+	uint8_t slot_regs[SMR_SLOTS][2];
 };
 
 void small_mmu_update_slot (struct small_mmu *mmu, unsigned int slot)
@@ -32,7 +32,7 @@ void small_mmu_update_all (struct small_mmu *mmu)
 		small_mmu_update_slot (mmu, slot);
 }
 
-U8 small_mmu_read (struct hw_device *dev, unsigned long addr)
+uint8_t small_mmu_read (struct hw_device *dev, unsigned long addr)
 {
 	struct small_mmu *mmu = (struct small_mmu *)dev->priv;
 	if (addr < SM_GLOBAL_REGS)
@@ -41,7 +41,7 @@ U8 small_mmu_read (struct hw_device *dev, unsigned long addr)
 		return mmu->slot_regs[mmu->global_regs[0]][addr - SM_GLOBAL_REGS];
 }
 
-void small_mmu_write (struct hw_device *dev, unsigned long addr, U8 val)
+void small_mmu_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	struct small_mmu *mmu = (struct small_mmu *)dev->priv;
 

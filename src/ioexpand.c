@@ -49,7 +49,7 @@ void ioexpand_reset (struct hw_device *dev)
 			dev->class_ptr->reset (dev);
 }
 
-U8 ioexpand_read (struct hw_device *dev, unsigned long addr)
+uint8_t ioexpand_read (struct hw_device *dev, unsigned long addr)
 {
 	struct ioexpand *iom = (struct ioexpand *)dev->priv;
         int slot = addr / IO_WINDOW;
@@ -61,7 +61,7 @@ U8 ioexpand_read (struct hw_device *dev, unsigned long addr)
 	return dev->class_ptr->read (dev, addr);
 }
 
-void ioexpand_write (struct hw_device *dev, unsigned long addr, U8 val)
+void ioexpand_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	struct ioexpand *iom = (struct ioexpand *)dev->priv;
         int slot = addr / IO_WINDOW;

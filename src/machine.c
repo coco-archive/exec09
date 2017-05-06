@@ -43,9 +43,9 @@ struct bus_map busmaps[NUM_BUS_MAPS];
 
 struct bus_map default_busmaps[NUM_BUS_MAPS];
 
-U16 fault_addr;
+uint16_t fault_addr;
 
-U8 fault_type;
+uint8_t fault_type;
 
 /* set after CPU reset and never cleared; shows that
    system initialisation has completed */
@@ -189,7 +189,7 @@ absolute_address_t absolute_from_reladdr (unsigned int device, unsigned long rel
    return (device * 0x10000000L) + reladdr;
 }
 
-U8 abs_read8 (absolute_address_t addr)
+uint8_t abs_read8 (absolute_address_t addr)
 {
 	// nac come here on dbg examine. Core dump on access to nxm.
 	// nac what is "id" and how is it extracted from top 4 bits and
@@ -206,7 +206,7 @@ U8 abs_read8 (absolute_address_t addr)
         // In any case, the table should not be indexed with f or ff becasue neither are valid
         // devices.
         // BUT! my "fix" below is bad; the fault gets reported 2ce and
-        // the data value gets reported as a 32-bit value instead of a U8
+        // the data value gets reported as a 32-bit value instead of a uint8_t
         // eg, if null_read is set up to return 0xab it returns 0xffffffab
         // and if it's set up to return 0x3b it returns 0x3b -- ie, it is
         // being sign extended. Not sure why, though, becasue it looks identical
@@ -250,7 +250,7 @@ U8 abs_read8 (absolute_address_t addr)
  * a full word is needed, but it implies that no reads will ever
  * occur across a device boundary.
  */
-U8 cpu_read8 (unsigned int addr)
+uint8_t cpu_read8 (unsigned int addr)
 {
 	struct bus_map *map = find_map (addr);
 	struct hw_device *dev = find_device (addr, map->devid);
@@ -263,7 +263,7 @@ U8 cpu_read8 (unsigned int addr)
 	return (*class_ptr->read) (dev, phy_addr);
 }
 
-U16 cpu_read16 (unsigned int addr)
+uint16_t cpu_read16 (unsigned int addr)
 {
 	struct bus_map *map = find_map (addr);
 	struct hw_device *dev = find_device (addr, map->devid);
@@ -280,7 +280,7 @@ U16 cpu_read16 (unsigned int addr)
 /**
  * Called by the CPU to write a byte.
  */
-void cpu_write8 (unsigned int addr, U8 val)
+void cpu_write8 (unsigned int addr, uint8_t val)
 {
         //printf("write 0x%04x<-0x%02x\n", addr, val);
         //fprintf(log_file,"wr 0x%04x<-0x%02x\n", addr, val);
@@ -311,7 +311,7 @@ void cpu_write8 (unsigned int addr, U8 val)
         command_write_hook (absolute_from_reladdr (map->devid, phy_addr), val);
 }
 
-void abs_write8 (absolute_address_t addr, U8 val)
+void abs_write8 (absolute_address_t addr, uint8_t val)
 {
 	unsigned int id = addr >> 28;
 	unsigned long phy_addr = addr & 0xFFFFFFF;
@@ -417,7 +417,7 @@ void null_reset (struct hw_device *dev)
 	(void) dev;	// silence warning unused parameter
 }
 
-U8 null_read (struct hw_device *dev, unsigned long addr)
+uint8_t null_read (struct hw_device *dev, unsigned long addr)
 {
 	(void) dev;	// silence warning unused parameter
 	(void) addr;
@@ -425,7 +425,7 @@ U8 null_read (struct hw_device *dev, unsigned long addr)
 	return 0xFF;
 }
 
-void null_write (struct hw_device *dev, unsigned long addr, U8 val)
+void null_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	(void) dev;	// silence warning unused parameter
 	(void) addr;
@@ -453,13 +453,13 @@ void ram_reset (struct hw_device *dev)
 	memset (dev->priv, 0, dev->size);
 }
 
-U8 ram_read (struct hw_device *dev, unsigned long addr)
+uint8_t ram_read (struct hw_device *dev, unsigned long addr)
 {
 	char *buf = dev->priv;
 	return buf[addr];
 }
 
-void ram_write (struct hw_device *dev, unsigned long addr, U8 val)
+void ram_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	char *buf = dev->priv;
 	buf[addr] = val;
@@ -526,7 +526,7 @@ struct hw_device *rom_create (const char *filename, unsigned int maxsize)
 
 /**********************************************************/
 
-U8 console_read (struct hw_device *dev, unsigned long addr)
+uint8_t console_read (struct hw_device *dev, unsigned long addr)
 {
 	switch (addr)
 	{
@@ -537,7 +537,7 @@ U8 console_read (struct hw_device *dev, unsigned long addr)
 	}
 }
 
-void console_write (struct hw_device *dev, unsigned long addr, U8 val)
+void console_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	switch (addr)
 	{
@@ -569,9 +569,9 @@ struct hw_device *console_create (void)
 
 /**********************************************************/
 
-U8 mmu_regs[MMU_PAGECOUNT][MMU_PAGEREGS];
+uint8_t mmu_regs[MMU_PAGECOUNT][MMU_PAGEREGS];
 
-U8 mmu_read (struct hw_device *dev, unsigned long addr)
+uint8_t mmu_read (struct hw_device *dev, unsigned long addr)
 {
 	switch (addr)
 	{
@@ -585,14 +585,14 @@ U8 mmu_read (struct hw_device *dev, unsigned long addr)
 		{
 			unsigned int page = (addr / MMU_PAGEREGS) % MMU_PAGECOUNT;
 			unsigned int reg = addr % MMU_PAGEREGS;
-			U8 val = mmu_regs[page][reg];
+			uint8_t val = mmu_regs[page][reg];
 			//printf ("\n%02X, %02X = %02X\n", page, reg, val);
 			return val;
 		}
 	}
 }
 
-void mmu_write (struct hw_device *dev, unsigned long addr, U8 val)
+void mmu_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	unsigned int page = (addr / MMU_PAGEREGS) % MMU_PAGECOUNT;
 	unsigned int reg = addr % MMU_PAGEREGS;
@@ -627,7 +627,7 @@ void mmu_reset_complete (struct hw_device *dev)
 	{
 		map = &busmaps[4 + page * (MMU_PAGESIZE / BUS_MAP_SIZE)];
 		mmu_regs[page][0] = map->devid;
-		mmu_regs[page][1] = (U8) (map->offset / MMU_PAGESIZE);
+		mmu_regs[page][1] = (uint8_t) (map->offset / MMU_PAGESIZE);
 		mmu_regs[page][2] = map->flags & MAP_READWRITE;
 		/* printf ("%02X %02X %02X\n",
 			map->devid, map->offset / MMU_PAGESIZE,

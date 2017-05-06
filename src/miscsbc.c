@@ -1,3 +1,10 @@
+#include "config.h"
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#else
+#error
+#endif
+
 #include <fcntl.h>
 #include <assert.h>
 #include "machine.h"
@@ -57,7 +64,7 @@ FILE *dump_file;
 // by inspection command read (should be address 0x7c02) comes in with addr=0x8d
 // TODO no way to check for "char available" and so smii_i_busy is always true and
 // console input is blocking.
-U8 smii_console_read (struct hw_device *dev, unsigned long addr)
+uint8_t smii_console_read (struct hw_device *dev, unsigned long addr)
 {
     unsigned char ch;
     switch (addr) {
@@ -83,7 +90,7 @@ U8 smii_console_read (struct hw_device *dev, unsigned long addr)
 }
 
 
-void smii_console_write (struct hw_device *dev, unsigned long addr, U8 val)
+void smii_console_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
     switch (addr) {
     case 0x00:
@@ -252,7 +259,7 @@ struct machine smii_machine =
    offset 4,5 - 3rd UART
    offset 6,7 - GPIO unit
  */
-U8 multicomp_console_rxpoll (void)
+uint8_t multicomp_console_rxpoll (void)
 {
     unsigned char ch;
     if (batch_file) {
@@ -282,7 +289,7 @@ U8 multicomp_console_rxpoll (void)
 }
 
 
-U8 multicomp09_console_read (struct hw_device *dev, unsigned long addr)
+uint8_t multicomp09_console_read (struct hw_device *dev, unsigned long addr)
 {
     //printf("In console_read with addr=0x%08x pc=0x%04x\n", (unsigned int)addr, get_pc());
     unsigned char ch;
@@ -350,7 +357,7 @@ U8 multicomp09_console_read (struct hw_device *dev, unsigned long addr)
     }
 }
 
-void multicomp09_console_write (struct hw_device *dev, unsigned long addr, U8 val)
+void multicomp09_console_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
     //printf("In console_write with addr=0x%08x val=0x%02x pc=0x%04x\n", (unsigned int)addr, val, get_pc());
     //fprintf(log_file,"%02x~%02x\n",(unsigned char)(addr&0xff),val);
@@ -663,7 +670,7 @@ void sdmapper_remap(int op, int val)
 }
 
 
-U8 sdmapper_read (struct hw_device *dev, unsigned long addr)
+uint8_t sdmapper_read (struct hw_device *dev, unsigned long addr)
 {
     //printf("INFO In sdmapper_read with addr=0x%08x, mc_state=%d, mc_poll=%d\n", addr, mc_state, mc_poll);
     switch (addr) {
@@ -757,7 +764,7 @@ U8 sdmapper_read (struct hw_device *dev, unsigned long addr)
 }
 
 // TODO expand RAM and implement mapper, protect and rom disable
-void sdmapper_write (struct hw_device *dev, unsigned long addr, U8 val)
+void sdmapper_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
     int retvar;
     //printf("INFO In sdmapper_write with addr=0x%08x, mc_state=%d mc_poll=%d mc_dindex=%d\n", addr, mc_state, mc_poll, mc_dindex);
@@ -1016,7 +1023,7 @@ struct machine multicomp09_machine =
 
 /* UART-style console. Console input is blocking (but should not be)
  */
-U8 kipper1_console_read (struct hw_device *dev, unsigned long addr)
+uint8_t kipper1_console_read (struct hw_device *dev, unsigned long addr)
 {
     //printf("In console_read with addr=0x%08x pc=0x%04x\n", (unsigned int)addr, get_pc());
     unsigned char ch;
@@ -1041,7 +1048,7 @@ U8 kipper1_console_read (struct hw_device *dev, unsigned long addr)
     }
 }
 
-void kipper1_console_write (struct hw_device *dev, unsigned long addr, U8 val)
+void kipper1_console_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
     //printf("In console_write with addr=0x%08x val=0x%02x pc=0x%04x\n", (unsigned int)addr, val, get_pc());
     //fprintf(log_file,"%02x~%02x\n",(unsigned char)(addr&0xff),val);

@@ -54,7 +54,7 @@ void serial_update (struct serial_port *port)
 		port->status &= ~SER_STAT_WRITEOK;
 }
 
-U8 serial_read (struct hw_device *dev, unsigned long addr)
+uint8_t serial_read (struct hw_device *dev, unsigned long addr)
 {
 	struct serial_port *port = (struct serial_port *)dev->priv;
 	int retval;
@@ -63,7 +63,7 @@ U8 serial_read (struct hw_device *dev, unsigned long addr)
 	{
 		case SER_DATA:
 		{
-			U8 val;
+			uint8_t val;
 			if (!(port->status & SER_STAT_READOK))
 				return 0xFF;
 			retval = read (port->fin, &val, 1);
@@ -78,7 +78,7 @@ U8 serial_read (struct hw_device *dev, unsigned long addr)
         return 0x42;
 }
 
-void serial_write (struct hw_device *dev, unsigned long addr, U8 val)
+void serial_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
 	struct serial_port *port = (struct serial_port *)dev->priv;
 	int retval;
@@ -86,7 +86,7 @@ void serial_write (struct hw_device *dev, unsigned long addr, U8 val)
 	{
 		case SER_DATA:
 		{
-			U8 v = val;
+			uint8_t v = val;
 			retval = write (port->fout, &v, 1);
 			assert(retval != -1);
 			break;
@@ -113,7 +113,7 @@ struct hw_class serial_class =
 	.write = serial_write,
 };
 
-extern U8 null_read (struct hw_device *dev, unsigned long addr);
+extern uint8_t null_read (struct hw_device *dev, unsigned long addr);
 
 struct hw_device* serial_create (void)
 {

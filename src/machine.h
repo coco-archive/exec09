@@ -7,12 +7,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * GCC6809 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with GCC6809; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -22,9 +22,6 @@
 #define M6809_MACHINE_H
 
 /* This file defines structures used to build generic machines on a 6809. */
-
-typedef unsigned char U8;
-typedef unsigned short U16;
 
 typedef unsigned long absolute_address_t;
 
@@ -102,10 +99,10 @@ struct hw_class
 	void (*reset) (struct hw_device *dev);
 
 	/* Reads a byte at a given offset from the beginning of the device. */
-	U8 (*read) (struct hw_device *dev, unsigned long phy_addr);
+	uint8_t (*read) (struct hw_device *dev, unsigned long phy_addr);
 
 	/* Writes a byte at a given offset from the beginning of the device. */
-	void (*write) (struct hw_device *dev, unsigned long phy_addr, U8 val);
+	void (*write) (struct hw_device *dev, unsigned long phy_addr, uint8_t val);
 
 	/* Update procedure.  This is called periodically and can be used for
 	whatever purpose.  The minimum update interval is once per 1ms.  Leave
@@ -158,12 +155,12 @@ struct hw_device *console_create (void);
 struct hw_device *disk_create (const char *backing_file, struct hw_device *ram_dev);
 
 void fault (unsigned int addr, unsigned char type);
-U8 ram_read (struct hw_device *dev, unsigned long addr);
-U8 cpu_read8 (unsigned int addr);
-U16 cpu_read16 (unsigned int addr);
-void cpu_write8 (unsigned int addr, U8 val);
-U8 abs_read8 (absolute_address_t addr);
-void abs_write8 (absolute_address_t addr, U8 val);
+uint8_t ram_read (struct hw_device *dev, unsigned long addr);
+uint8_t cpu_read8 (unsigned int addr);
+uint16_t cpu_read16 (unsigned int addr);
+void cpu_write8 (unsigned int addr, uint8_t val);
+uint8_t abs_read8 (absolute_address_t addr);
+void abs_write8 (absolute_address_t addr, uint8_t val);
 void cpu_is_running (void);
 void machine_init (const char *machine_name, const char *boot_rom_file);
 absolute_address_t to_absolute (unsigned long cpuaddr);
