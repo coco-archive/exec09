@@ -80,6 +80,7 @@ int udp_socket_receive (int s, int dstport, void *data, socklen_t len)
 {
 	int rc;
 	struct sockaddr_in from;
+        (void) dstport;                 // unused variable
 
 	rc = recvfrom (s, data, len, 0, (struct sockaddr *)&from, &len);
 	if ((rc < 0) && (errno != EAGAIN))

@@ -64,10 +64,6 @@ absolute_address_t thread_current;
 absolute_address_t thread_id = 0;
 thread_t threadtab[MAX_THREADS];
 
-#define MAX_CMD_QUEUES 8
-int command_stack_depth = -1;
-cmdqueue_t command_stack[MAX_CMD_QUEUES];
-
 #define MAX_TRACE 256
 target_addr_t trace_buffer[MAX_TRACE];
 unsigned int trace_offset = 0;
@@ -522,10 +518,6 @@ display_t* display_alloc (void)
    return NULL;
 }
 
-void display_free (display_t *ds)
-{
-}
-
 void print_value (unsigned long val, datatype_t *typep)
 {
    char f[8];
@@ -746,23 +738,6 @@ void command_change_thread (void)
          printf ("[ No thread ]\n");
       }
    }
-}
-
-/* TODO command_stack and command_stack_* are unused */
-void command_stack_push (unsigned int reason)
-{
-   cmdqueue_t *q = &command_stack[++command_stack_depth];
-}
-
-void command_stack_pop (void)
-{
-   cmdqueue_t *q = &command_stack[command_stack_depth];
-   --command_stack_depth;
-}
-
-void command_stack_add (const char *cmd)
-{
-   cmdqueue_t *q = &command_stack[command_stack_depth];
 }
 
 char* getarg (void)

@@ -913,8 +913,6 @@ void multicomp09_tick (void)
 // I assume the same restriction also applies to ROMs and RAMs
 void multicomp09_init (const char *boot_rom_file)
 {
-    int i;
-
     /* Log file
     */
     log_file = file_open(NULL, "multicomp09.log", "w+b");

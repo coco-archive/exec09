@@ -8,12 +8,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- * 
+ *
  * GCC6809 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with GCC6809; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -39,7 +39,7 @@ unsigned int mhz = 1;
    triggered periodically, every so many cycles. Typically this is
    used by the machine to generate a timer interrupt. Off By default.
 */
-unsigned int cycles_per_tick = 0;
+int cycles_per_tick = 0;
 
 /* Nonzero if debugging support is turned on */
 int debug_enabled = 0;

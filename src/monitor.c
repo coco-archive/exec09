@@ -920,8 +920,8 @@ int dasm (char *buf, absolute_address_t opc)
       op = codes[op].code;
     }
 
-  op_str = (char *) mne[op];
-  if ((op_str == "SWI2") && os9call)
+  op_str = mne[op];
+  if ((!strcmp("SWI2", op_str)) && os9call)
     {
       op = fetch8();
       if(op < 0x91)
