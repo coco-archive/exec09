@@ -7,15 +7,17 @@
 #include <sys/errno.h>
 #include <unistd.h>
 #include <ctype.h>
+
 #ifdef HAVE_TERMIOS_H
-# include <termios.h>
+#  include <termios.h>
 #else
-#error
+#  error
 #endif
+
 #ifdef HAVE_READLINE
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+#  include <stdio.h>
+#  include <readline/readline.h>
+#  include <readline/history.h>
 #endif
 
 struct termios old_tio, new_tio;
@@ -1374,40 +1376,51 @@ void print_current_insn (void)
    print_insn_long(to_absolute(get_pc()));
 }
 
+#define PROMPT "(dbg) "
+#define MAXLINE 256
+
 int command_exec (FILE *infile)
 {
-   char buffer[256];
-   static char prev_buffer[256];
+   char buffer[MAXLINE];
+   static char prev_buffer[MAXLINE];
    char *cmd;
    command_handler_t handler;
 
-   do {
-      errno = 0;
+   // Read user input to buffer and store including \n
 #ifdef HAVE_READLINE
-      if (infile == stdin)
+   if (infile == stdin)
+   {
+      char *line_read = readline(PROMPT);
+      if (line_read == NULL)
+         return -1;
+      if (strlen(line_read) > sizeof(buffer) - 2)
       {
-         char *buf = readline ("(dbg) ");
-         if (buf == NULL)
-            return -1;
-         if (*buf)
-            add_history (buf);
-         strcpy (buffer, buf);
-         strcat (buffer, "\n");
+         syntax_error("line too long");
+         return 0;
       }
-      else
+      strcpy (buffer, line_read);
+      strcat (buffer, "\n");
+      if (buffer[0] != '\n')
+         add_history (buffer);
+      free(line_read);
+   }
+#else
+   if (infile == stdin)
+   {
+      printf(PROMPT);
+      fgets(buffer, 255, stdin);
+   }
 #endif
-      {
-         if (infile == stdin)
-            printf ("(dbg) ");
-         fgets (buffer, 255, infile);
-         if (feof (infile))
-            return -1;
-      }
-   } while (errno != 0);
+   if (infile != stdin)
+   {
+      fgets(buffer, sizeof(buffer), infile);
+      if (feof(infile))
+         return -1;
+   }
 
    /* In terminal mode, a blank line means to execute
       the previous command. */
-   if (buffer[0] == '\n')
+   if ((infile == stdin) && (buffer[0] == '\n'))
       strcpy (buffer, prev_buffer);
 
    /* Skip comments */
