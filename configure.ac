@@ -13,20 +13,10 @@ AC_CHECK_HEADERS([netinet/in.h stdint.h stdlib.h string.h sys/socket.h \
 		  sys/time.h termios.h unistd.h fcntl.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
-AC_C_BIGENDIAN
-AC_C_CONST
 AC_C_INLINE
-AC_HEADER_TIME
-AC_TYPE_UINT16_T
-AC_TYPE_UINT32_T
-AC_TYPE_UINT8_T
-AC_C_VOLATILE
 
 # Checks for library functions.
 AC_FUNC_MALLOC
-AC_FUNC_SELECT_ARGTYPES
-AC_TYPE_SIGNAL
-AC_FUNC_VPRINTF
 AC_CHECK_FUNCS([gettimeofday memset select strchr strstr strtoul socket])
 
 AC_ARG_ENABLE([wpc],
