@@ -18,8 +18,22 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#include "config.h"
+
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#else
+#error
+#endif
+
+#ifdef HAVE_STDLIB_H
+# include <stdlib.h>
+#else
+#error
+#endif
+
 #include <stdio.h>
-#include <stdlib.h>
+
 #include "machine.h"
 #include "ioexpand.h"
 #include "6809.h"

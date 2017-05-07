@@ -20,7 +20,19 @@
 
 /* The interrupt multiplexer */
 
-#include <stdlib.h>
+#include "config.h"
+#ifdef HAVE_STDINT_H
+# include <stdint.h>
+#else
+#error
+#endif
+
+#ifdef HAVE_STDLIB_H
+# include <stdlib.h>
+#else
+#error
+#endif
+
 #include "machine.h"
 #include "eon.h"
 #include "6809.h"

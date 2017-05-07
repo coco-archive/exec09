@@ -27,6 +27,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include <stdint.h>
 
 #include "machine.h"
 #include "serial.h"
