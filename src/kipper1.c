@@ -23,6 +23,8 @@ FILE *batch_file;
  */
 uint8_t kipper1_console_read (struct hw_device *dev, unsigned long addr)
 {
+    (void) dev;     // silence unused warning
+
     //printf("In console_read with addr=0x%08x pc=0x%04x\n", (unsigned int)addr, get_pc());
     unsigned char ch;
     switch (addr) {
@@ -48,6 +50,8 @@ uint8_t kipper1_console_read (struct hw_device *dev, unsigned long addr)
 
 void kipper1_console_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
+    (void) dev;     // silence unused warning
+
     //printf("In console_write with addr=0x%08x val=0x%02x pc=0x%04x\n", (unsigned int)addr, val, get_pc());
     //fprintf(log_file,"%02x~%02x\n",(unsigned char)(addr&0xff),val);
     switch (addr) {

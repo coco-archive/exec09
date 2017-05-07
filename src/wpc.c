@@ -399,6 +399,7 @@ void wpc_keypoll (void)
 
 uint8_t wpc_asic_read (struct hw_device *dev, unsigned long addr)
 {
+        (void) dev;     // silence unused warning
 	uint8_t val;
 
 	switch (addr + WPC_ASIC_BASE)
@@ -514,6 +515,8 @@ void wpc_set_dmd_page (unsigned int map, unsigned char val)
 
 void wpc_asic_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
+        (void) dev;     // silence unused warning
+
 	switch (addr + WPC_ASIC_BASE)
 	{
 		case WPC_DMD_LOW_PAGE:
@@ -621,6 +624,8 @@ void wpc_periodic (void)
 
 void wpc_asic_reset (struct hw_device *dev)
 {
+        (void) dev;     // silence unused warning
+
 	memset (wpc, 0, sizeof (struct wpc_asic));
 	wpc_write_switch (19, 1); /* Always Closed */
 }

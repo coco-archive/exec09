@@ -1322,6 +1322,8 @@ int load_s19(FILE *fp)
 
 void monitor_call (unsigned int flags)
 {
+   (void) flags; // FIXME: this variable is never used
+
 #ifdef CALL_STACK
 	if (current_function_call <= &fctab[MAX_FUNCTION_CALLS-1])
 	{

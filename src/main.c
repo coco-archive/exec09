@@ -30,7 +30,7 @@
 #include "monitor.h"
 
 /* The total number of cycles that have executed */
-unsigned long total = 0;
+int total = 0;
 
 /* The frequency of the emulated CPU, in megahertz */
 unsigned int mhz = 1;
@@ -202,7 +202,7 @@ struct option
 		NO_NEG, HAS_ARG, NULL, 0, &machine_name, NULL },
 	{ 'p', "persistent", "Use persistent machine state",
 		NO_NEG, NO_ARG, &machine_persistent, 1, NULL, NULL },
-	{ '\0', NULL },
+	{ '\0', NULL, NULL, 0, 0, 0, 0, NULL, NULL },
 };
 
 

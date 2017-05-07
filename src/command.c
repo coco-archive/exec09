@@ -1299,7 +1299,7 @@ struct command_name
    { "exe", "exec-file", cmd_exec_file,
      "Open an executable" },
 #endif
-   { NULL, NULL },
+   { NULL, NULL, NULL, NULL },
 };
 
 void cmd_help (void)

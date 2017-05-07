@@ -70,7 +70,7 @@ typedef uint16_t target_addr_t;
 
 extern int debug_enabled;
 extern int need_flush;
-extern unsigned long total;
+extern int total;
 extern int dump_cycles_on_success;
 extern const char *prog_name;
 

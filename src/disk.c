@@ -63,12 +63,17 @@ struct disk_priv
 
 void disk_update (struct hw_device *dev)
 {
+        // TODO: not yet implemented
 	/* Simulate the way that an actual disk would work.
 	Induce some latency into the process. */
+        (void) dev; // silence unused warning
 }
 
 uint8_t disk_read (struct hw_device *dev, unsigned long addr)
 {
+        // TODO: not yet implemented
+        (void) dev;  // silence unused warning
+        (void) addr; // silence unused warning
 	return 0;
 }
 

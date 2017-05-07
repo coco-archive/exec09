@@ -28,6 +28,8 @@ int smii_o_busy = 0;
 // console input is blocking.
 uint8_t smii_console_read (struct hw_device *dev, unsigned long addr)
 {
+    (void) dev;     // silence unused warning
+
     unsigned char ch;
     switch (addr) {
     case 0x02: // SCCACMD
@@ -54,6 +56,8 @@ uint8_t smii_console_read (struct hw_device *dev, unsigned long addr)
 
 void smii_console_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
+    (void) dev;     // silence unused warning
+
     switch (addr) {
     case 0x00:
     case 0x02:

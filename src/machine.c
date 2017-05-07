@@ -536,6 +536,8 @@ uint8_t console_read (struct hw_device *dev, unsigned long addr)
 {
    	int c;
 
+	(void) dev;	// silence warning unused parameter
+
 	switch (addr)
 	{
 		case CON_IN:
@@ -552,6 +554,8 @@ uint8_t console_read (struct hw_device *dev, unsigned long addr)
 
 void console_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
+	(void) dev;	// silence warning unused parameter
+
 	switch (addr)
 	{
 		case CON_OUT:
@@ -563,6 +567,7 @@ void console_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 		default:
 			break;
 	}
+
 }
 
 struct hw_class console_class =
@@ -586,6 +591,8 @@ uint8_t mmu_regs[MMU_PAGECOUNT][MMU_PAGEREGS];
 
 uint8_t mmu_read (struct hw_device *dev, unsigned long addr)
 {
+        (void) dev;     // silence unused warning
+
 	switch (addr)
 	{
 		case 0x60:
@@ -607,6 +614,8 @@ uint8_t mmu_read (struct hw_device *dev, unsigned long addr)
 
 void mmu_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 {
+        (void) dev;     // silence unused warning
+
 	unsigned int page = (addr / MMU_PAGEREGS) % MMU_PAGECOUNT;
 	unsigned int reg = addr % MMU_PAGEREGS;
 	mmu_regs[page][reg] = val;
@@ -620,6 +629,8 @@ void mmu_write (struct hw_device *dev, unsigned long addr, uint8_t val)
 
 void mmu_reset (struct hw_device *dev)
 {
+        (void) dev;     // silence unused warning
+
 	unsigned int page;
 	for (page = 0; page < MMU_PAGECOUNT; page++)
 	{
@@ -631,6 +642,8 @@ void mmu_reset (struct hw_device *dev)
 
 void mmu_reset_complete (struct hw_device *dev)
 {
+        (void) dev;     // silence unused warning
+
 	unsigned int page;
 	const struct bus_map *map;
 
@@ -666,7 +679,7 @@ struct hw_device *mmu_create (void)
 
 void machine_update (void)
 {
-	int i;
+	unsigned int i;
 	for (i=0; i < device_count; i++)
 	{
 		struct hw_device *dev = device_table[i];
