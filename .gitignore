@@ -24,6 +24,7 @@ stamp-h1
 
 # Executables
 m6809-run
+*.s19
 
 # Qt Creator files
 exec09.config
@@ -37,6 +38,7 @@ exec09.includes
 *.gcno
 *.gcda
 *.la
+*.lst
 *.lo
 *.log
 *.o
