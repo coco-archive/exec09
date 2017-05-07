@@ -28,7 +28,6 @@
 #include "eon.h"
 
 #define CONFIG_LEGACY
-#define MISSING 0xff
 #define mmu_device (device_table[0])
 
 extern FILE *log_file;
@@ -526,12 +525,26 @@ struct hw_device *rom_create (const char *filename, unsigned int maxsize)
 
 /**********************************************************/
 
+// Address offsets for console
+#define CON_OUT   0     // write
+#define CON_IN    0     // read
+#define CON_EXIT  1     // write to exit emulator
+
+#define MISSING 0xFF    // indicate no data
+
 uint8_t console_read (struct hw_device *dev, unsigned long addr)
 {
+   	int c;
+
 	switch (addr)
 	{
 		case CON_IN:
-			return getchar ();
+		   	// non-blocking read
+		   	c = getchar ();
+			if (c == EOF)
+			   	return MISSING;
+			else
+				return c;
 		default:
 			return MISSING;
 	}

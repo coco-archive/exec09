@@ -93,15 +93,8 @@ RAM in 512-byte chunks.  The maximum disk size is 32MB (16-bit sector numbers).
 
 /* The Console */
 
-	#define CONSOLE_DEVID 2
-	#define CONSOLE_ADDR   DEVICE_BASE(CONSOLE_DEVID)
-		#define CONSOLE_OUT    (CONSOLE_ADDR + 0)
-		#define LEGACY_EXIT    (CONSOLE_ADDR + 1)
-		#define CONSOLE_IN     (CONSOLE_ADDR + 2)
-
-#define CON_OUT 0
-#define CON_EXIT 1
-#define CON_IN 2
+#define CONSOLE_DEVID 2
+#define CONSOLE_ADDR   DEVICE_BASE(CONSOLE_DEVID)
 
 /* The Display */
 
