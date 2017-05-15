@@ -528,8 +528,8 @@ struct hw_device *rom_create (const char *filename, unsigned int maxsize)
 
 // Address offsets for console
 #define CON_OUT   0     // write
-#define CON_IN    0     // read
 #define CON_EXIT  1     // write to exit emulator
+#define CON_IN    2     // read
 
 #define MISSING 0xFF    // indicate no data
 
