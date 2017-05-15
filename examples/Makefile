@@ -1,7 +1,7 @@
 prefix ?= /usr/local
 #prefix ?= /opt/gcc6809
 
-CC = $(prefix)/bin/m6809-sim-none-gcc
+CC = $(prefix)/bin/m6809-sim-none-gcc -L $(prefix)/lib/gcc/m6809-sim-none/4.3.6/ -L $(prefix)/m6809-sim-none/lib/
 
 SRC = $(wildcard *.c)
 S19 = $(sort $(SRC:.c=.s19))
